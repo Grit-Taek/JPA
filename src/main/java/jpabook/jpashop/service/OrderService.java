@@ -8,6 +8,10 @@ import jpabook.jpashop.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -39,4 +43,10 @@ public class OrderService {
         Order order = orderRepository.findOne(orderId);
         order.cancel();
     }
+
+    public List<Order> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findOrders(orderSearch);
+    }
+
+
 }
